@@ -43,7 +43,7 @@ docker-compose.yml
 deploy/
 **/Dockerfile
 !docker/build/
-!docker/build/nginx/Dockerfile
+!docker/build/**
 .claude/
 .env
 !docker/local/.env
