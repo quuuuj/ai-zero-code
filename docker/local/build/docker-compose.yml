@@ -1,0 +1,12 @@
+services:
+  server:
+    build:
+      context: ../../..
+      dockerfile: ai-zero-code-backend/Dockerfile
+    image: 47.106.93.24:5000/ai-zero-code/server:latest
+
+  nginx:
+    build:
+      context: ../../..
+      dockerfile: docker/local/build/nginx/Dockerfile
+    image: 47.106.93.24:5000/ai-zero-code/nginx:latest

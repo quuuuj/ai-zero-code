@@ -38,12 +38,15 @@ build/
 .playwright-mcp/
 tmp/
 docker-compose.yml
-!docker/docker-compose.yml
+!docker/local/docker-compose.yml
+!docker/local/build/docker-compose.yml
 deploy/
 **/Dockerfile
+!docker/local/build/
+!docker/local/build/nginx/Dockerfile
 .claude/
 .env
-!docker/.env
+!docker/local/.env
 test/
 .superpowers/
 docs/
