@@ -8,5 +8,5 @@ services:
   nginx:
     build:
       context: ../..
-      dockerfile: docker/build/nginx/Dockerfile
+      dockerfile: docker/build/ai-zero-code-frontend/Dockerfile
     image: 47.106.93.24:5000/ai-zero-code/nginx:latest
