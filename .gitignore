@@ -39,11 +39,11 @@ build/
 tmp/
 docker-compose.yml
 !docker/local/docker-compose.yml
-!docker/local/build/docker-compose.yml
+!docker/build/docker-compose.yml
 deploy/
 **/Dockerfile
-!docker/local/build/
-!docker/local/build/nginx/Dockerfile
+!docker/build/
+!docker/build/nginx/Dockerfile
 .claude/
 .env
 !docker/local/.env
