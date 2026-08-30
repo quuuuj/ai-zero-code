@@ -28,6 +28,10 @@ create table if not exists user
     INDEX idx_userName (userName)
 ) comment '用户' collate = utf8mb4_unicode_ci;
 
+-- 默认管理员账号（admin / 123456，密码为 MD5(盐 + 123456)）
+insert ignore into user (userAccount, userPassword, userName, userRole)
+values ('admin', 'ca2c4346e0cf962af579a15cb07487f7', '管理员', 'admin');
+
 
 
 -- 应用表

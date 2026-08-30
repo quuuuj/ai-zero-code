@@ -32,8 +32,8 @@ import { useLoginUserStore } from '@/stores/loginUser'
 import { login } from '@/api/userController'
 
 const formState = reactive<API.UserLoginRequest>({
-  userAccount: '',
-  userPassword: '',
+  userAccount: 'admin',
+  userPassword: '123456',
 })
 
 const router = useRouter()
