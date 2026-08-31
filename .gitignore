@@ -39,11 +39,9 @@ build/
 tmp/
 docker-compose.yml
 !docker/local/docker-compose.yml
-!docker/build/docker-compose.yml
+docker/build/
 deploy/
 **/Dockerfile
-!docker/build/
-!docker/build/**
 .claude/
 .env
 !docker/local/.env
