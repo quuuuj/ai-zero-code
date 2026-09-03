@@ -73,8 +73,8 @@ public interface AppService extends IService<App> {
      *
      * @param appDeployRequest 部署请求（包含 appId）
      * @param loginUser        当前登录用户
-     *
+     * @param request          当前请求，用于解析部署域名与协议
      */
-    String deployApp(AppDeployRequest appDeployRequest, User loginUser);
+    String deployApp(AppDeployRequest appDeployRequest, User loginUser, HttpServletRequest request);
 
 }

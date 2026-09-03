@@ -25,12 +25,15 @@ public class ScreenshotServiceImpl implements ScreenshotService {
     @Autowired
     private OssManager ossManager;
 
+    @Autowired
+    private WebScreenshotUtil webScreenshotUtil;
+
     @Override
     public String takeAndUploadScreenshot(String webUrl) {
         // 1. 参数校验
         ThrowUtils.throwIf(StrUtil.isBlank(webUrl), ErrorCode.PARAMS_ERROR, "截图网址不能为空");
         // 2. 截图
-        String localImgPath = WebScreenshotUtil.takeScreenshot(webUrl);
+        String localImgPath = webScreenshotUtil.takeScreenshot(webUrl);
         ThrowUtils.throwIf(StrUtil.isBlank(localImgPath), ErrorCode.OPERATION_ERROR, "截图失败");
         File img = new File(localImgPath);
         // 3. 构建存放key（存放目录）

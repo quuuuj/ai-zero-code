@@ -93,8 +93,8 @@ public class AppController {
     public BaseResponse<String> deployApp(@RequestBody AppDeployRequest appDeployRequest, HttpServletRequest request) {
         ThrowUtils.throwIf(appDeployRequest == null, ErrorCode.PARAMS_ERROR);
         User loginUser = userService.getLoginUser(request);
-        String deployKey = appService.deployApp(appDeployRequest, loginUser);
-        return ResultUtils.success(deployKey);
+        String deployUrl = appService.deployApp(appDeployRequest, loginUser, request);
+        return ResultUtils.success(deployUrl);
     }
 
 

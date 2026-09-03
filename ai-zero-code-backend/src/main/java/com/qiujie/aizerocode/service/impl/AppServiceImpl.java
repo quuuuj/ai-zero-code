@@ -81,6 +81,9 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
     @Autowired
     private AiCodegenTypeRoutingServiceFactory aiCodegenTypeRoutingServiceFactory;
 
+    @Autowired
+    private DeployUrlResolver deployUrlResolver;
+
 
     @Override
     public Long createApp(AppAddRequest appAddRequest, HttpServletRequest request) {
@@ -219,7 +222,7 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
      * @return
      */
     @Override
-    public String deployApp(AppDeployRequest appDeployRequest, User loginUser) {
+    public String deployApp(AppDeployRequest appDeployRequest, User loginUser, HttpServletRequest request) {
         // 1. 校验参数
         Long appId = appDeployRequest.getAppId();
         ThrowUtils.throwIf(appId == null || appId <= 0, ErrorCode.PARAMS_ERROR, "appId 错误");
@@ -255,8 +258,9 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App> implements AppSe
         updateApp.setDeployedTime(LocalDateTime.now());
         boolean result = this.updateById(updateApp);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR, "部署失败");
-        String deployUrl = String.format("%s/%S", APP_DEPLOY_HOST, deployKey);
-        // 8. 异步生成应用截图
+        // 8. 解析部署后的访问 URL：配置的部署域名 + X-Forwarded-Proto / Host 端口推断协议
+        String deployUrl = deployUrlResolver.resolve(request, deployKey);
+        // 9. 异步生成应用截图
         generateAppScreenshotAsync(appId, deployUrl);
         return deployUrl;
     }
