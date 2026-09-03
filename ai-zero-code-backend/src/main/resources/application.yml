@@ -80,7 +80,7 @@ langchain4j:
       model-name: deepseek-v4-flash
       log-requests: true
       log-responses: true
-      max-tokens: 50
+      max-tokens: 256
       reasoning-effort: "low"
       temperature: 0
 
@@ -107,4 +107,8 @@ management:
   endpoint:
     health:
       show-details: always
+
+# 应用部署域名：用于生成部署后的访问地址（生产环境通过环境变量 APP_DEPLOY_HOST 覆盖为部署域名）
+app:
+  deploy-host: localhost
 

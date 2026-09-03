@@ -18,11 +18,7 @@ export const getDeployUrl = (deployKey: string) => {
 }
 
 // 获取静态资源预览URL
-export const getStaticPreviewUrl = (codeGenType: string, appId: string) => {
-  const baseUrl = `${STATIC_BASE_URL}/${appId}/`
-  // 如果是 Vue 项目，浏览地址需要添加 dist 后缀
-  if (codeGenType === CodeGenTypeEnum.VUE_PROJECT) {
-    return `${baseUrl}dist/index.html`
-  }
-  return baseUrl
+export const getStaticPreviewUrl = (_codeGenType: string, appId: string) => {
+  // 后端根据源码/部署产物解析入口，所有生成模式统一从应用根路径预览。
+  return `${STATIC_BASE_URL}/${appId}/`
 }

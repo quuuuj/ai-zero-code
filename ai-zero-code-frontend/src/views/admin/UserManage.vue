@@ -134,7 +134,7 @@ const doSearch = () => {
 }
 
 // 删除数据
-const doDelete = async (id: string) => {
+const doDelete = async (id: number | undefined) => {
   if (!id) {
     return
   }

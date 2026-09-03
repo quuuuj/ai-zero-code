@@ -511,8 +511,11 @@ const generateCode = async (userMessage: string, aiMessageIndex: number) => {
         // 拼接内容
         if (content !== undefined && content !== null) {
           fullContent += content
-          messages.value[aiMessageIndex].content = fullContent
-          messages.value[aiMessageIndex].loading = false
+          const aiMessage = messages.value[aiMessageIndex]
+          if (aiMessage) {
+            aiMessage.content = fullContent
+            aiMessage.loading = false
+          }
           scrollToBottom()
         }
       } catch (error) {
@@ -546,8 +549,11 @@ const generateCode = async (userMessage: string, aiMessageIndex: number) => {
 
         // 显示具体的错误信息
         const errorMessage = errorData.message || '生成过程中出现错误'
-        messages.value[aiMessageIndex].content = `❌ ${errorMessage}`
-        messages.value[aiMessageIndex].loading = false
+        const aiMessage = messages.value[aiMessageIndex]
+        if (aiMessage) {
+          aiMessage.content = `❌ ${errorMessage}`
+          aiMessage.loading = false
+        }
         message.error(errorMessage)
 
         streamCompleted = true
@@ -585,8 +591,11 @@ const generateCode = async (userMessage: string, aiMessageIndex: number) => {
 // 错误处理函数
 const handleError = (error: unknown, aiMessageIndex: number) => {
   console.error('生成代码失败：', error)
-  messages.value[aiMessageIndex].content = '抱歉，生成过程中出现了错误，请重试。'
-  messages.value[aiMessageIndex].loading = false
+  const aiMessage = messages.value[aiMessageIndex]
+  if (aiMessage) {
+    aiMessage.content = '抱歉，生成过程中出现了错误，请重试。'
+    aiMessage.loading = false
+  }
   message.error('生成失败，请重试')
   isGenerating.value = false
 }
