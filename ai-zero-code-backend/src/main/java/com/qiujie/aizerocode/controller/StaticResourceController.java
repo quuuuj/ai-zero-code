@@ -3,6 +3,7 @@ package com.qiujie.aizerocode.controller;
 import com.qiujie.aizerocode.exception.ErrorCode;
 import com.qiujie.aizerocode.exception.ThrowUtils;
 import com.qiujie.aizerocode.model.entity.App;
+import com.qiujie.aizerocode.model.enums.CodeGenTypeEnum;
 import com.qiujie.aizerocode.service.AppService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,13 @@ public class StaticResourceController {
                 resourcePath = File.separator + "index.html";
             }
             // 构建文件路径
-            String filePath = CODE_SAVE_PATH + File.separator + app.getCodeGenType() + File.separator + appId + resourcePath;
+            String filePath = CODE_SAVE_PATH + File.separator + app.getCodeGenType() + File.separator + appId;
+            // Vue 工程模式的运行入口在构建产物 dist/ 下，统一从应用根路径解析入口
+            if (CodeGenTypeEnum.VUE_PROJECT.getValue().equals(app.getCodeGenType())
+                    && !resourcePath.startsWith(File.separator + "dist")) {
+                filePath += File.separator + "dist";
+            }
+            filePath += resourcePath;
             File file = new File(filePath);
             // 检查文件是否存在
             if (!file.exists()) {
@@ -79,7 +86,11 @@ public class StaticResourceController {
         if (filePath.endsWith(".css")) return "text/css; charset=UTF-8";
         if (filePath.endsWith(".js")) return "application/javascript; charset=UTF-8";
         if (filePath.endsWith(".png")) return "image/png";
-        if (filePath.endsWith(".jpg")) return "image/jpeg";
+        if (filePath.endsWith(".jpg") || filePath.endsWith(".jpeg")) return "image/jpeg";
+        if (filePath.endsWith(".gif")) return "image/gif";
+        if (filePath.endsWith(".svg")) return "image/svg+xml";
+        if (filePath.endsWith(".webp")) return "image/webp";
+        if (filePath.endsWith(".ico")) return "image/x-icon";
         return "application/octet-stream";
     }
 }

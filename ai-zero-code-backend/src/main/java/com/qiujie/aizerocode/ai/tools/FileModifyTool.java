@@ -50,6 +50,7 @@ public class FileModifyTool extends BaseTool{
             if (!originalContent.contains(oldContent)) {
                 return "警告：文件中未找到要替换的内容，文件未修改 - " + relativeFilePath;
             }
+            // 源码不改写外部资源引用（同 FileWriteTool：改写由 VueProjectBuilder 在 dist 产物上统一处理）
             String modifiedContent = originalContent.replace(oldContent, newContent);
             if (originalContent.equals(modifiedContent)) {
                 return "信息：替换后文件内容未发生变化 - " + relativeFilePath;

@@ -96,6 +96,6 @@ public abstract class CodeSaver<T> {
             return;
         }
         String filePath = dirPath + File.separator + fileName;
-        FileUtil.writeString(content, filePath, StandardCharsets.UTF_8);
+        FileUtil.writeString(GeneratedAssetRewriter.rewrite(content), filePath, StandardCharsets.UTF_8);
     }
 }

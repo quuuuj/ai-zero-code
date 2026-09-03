@@ -42,7 +42,8 @@ public class FileWriteTool extends BaseTool {
             if (parentDir != null) {
                 Files.createDirectories(parentDir);
             }
-            // 写入文件内容
+            // 写入文件内容（源码不改写外部资源引用：Vue 模板里的 /xxx 会被 Vite 当作模块导入导致构建失败，
+            // 外部图片统一由 VueProjectBuilder 在构建完成后改写 dist 产物）
             Files.write(path, content.getBytes(),
                     StandardOpenOption.CREATE,
                     StandardOpenOption.TRUNCATE_EXISTING);
