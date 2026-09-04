@@ -47,5 +47,6 @@ deploy/
 !docker/local/.env
 test/
 .superpowers/
-docs/
+docs/*
+!docs/screenshots/
 demo/

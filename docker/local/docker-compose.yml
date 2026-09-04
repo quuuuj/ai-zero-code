@@ -37,7 +37,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ../tmp/deploy:/usr/share/nginx/html:ro
+      - ../../tmp/deploy:/usr/share/nginx/html:ro
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - ai-zero-code-net

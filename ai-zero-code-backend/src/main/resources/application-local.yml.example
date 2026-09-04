@@ -1,0 +1,27 @@
+# 本地开发配置模板
+# 复制本文件为 application-local.yml 并填入真实配置：
+# cp application-local.yml.example application-local.yml
+# 提示：application-local.yml 已被 .gitignore 忽略，不会提交到仓库
+
+# ----------------------------------------------------
+# 必填配置：AI 代码生成（DeepSeek）
+# ----------------------------------------------------
+langchain4j:
+  open-ai:
+    chat-model:
+      api-key: your-deepseek-api-key
+    streaming-chat-model:
+      api-key: your-deepseek-api-key
+    reasoning-streaming-chat-model:
+      api-key: your-deepseek-api-key
+    routing-chat-model:
+      api-key: your-deepseek-api-key
+
+# ----------------------------------------------------
+# 选填配置（按需开启）：
+# 如需使用应用部署截图上传、AI 配图、AI 文生图等高级功能，
+# 可参考 application.yml 中的对应节点添加：
+# - oss.client.*        : 阿里云 OSS（部署截图封面上传）
+# - pexels.api-key      : Pexels 图库搜索（代码中自动匹配高清配图）
+# - dashscope.api-key   : 阿里百炼（AI 文生图能力）
+# ----------------------------------------------------
