@@ -7,7 +7,8 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6)
 ![LangChain4j](https://img.shields.io/badge/LangChain4j-AI-blue)
 
-> 🌐 在线体验：<https://ai-zero-code.qiujie.net.cn>
+> 🌐 在线体验：<https://ai-zero-code.qiujie.net.cn>  
+> 💬 QQ 交流群：**967925576**
 
 ---
 
